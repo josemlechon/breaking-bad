@@ -21,11 +21,11 @@ object Versions {
 
     object ViewModel {
         const val VIEWMODEL = "2.2.0"
+        const val LIFE_CYCLE_VIEWMODEL_KTX = "2.2.0"
     }
 
     object Extensions {
         const val KTX = "1.2.0"
-        const val LIFE_CYCLE_VIMODEL_KTX = "2.2.0"
     }
 
     object DI {

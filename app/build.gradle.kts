@@ -22,7 +22,6 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-
         buildConfigField("String", "SERVER_BASE_URL", "\"https://breakingbadapi.com/api/\"")
     }
 
@@ -39,16 +38,19 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
     implementation(Libs.UI.APPCOMPAT)
-    implementation(Libs.UI.CONSTRAINTLAYOUT)
+    implementation(Libs.UI.CONSTRAINT_LAYOUT)
+    implementation( Libs.UI.RECYCLERVIEW)
 
     implementation(Libs.DI.KOIN)
     implementation(Libs.DI.KOIN_ANDROID)
     implementation(Libs.DI.KOIN_LIFECYCLE)
     implementation(Libs.DI.KOIN_VIEWMODEL)
 
-    implementation(Libs.ViewModel.VIEWMODEL)
+    implementation(Libs.ViewModel.VIEWMODEL_KTX)
     implementation(Libs.ViewModel.LIFECYCLE_EXTENSIONS)
-    implementation(Libs.ViewModel.LIFECICLY_VIEMODEL_KTX)
+    implementation(Libs.ViewModel.LIFECYCLE_VIEMODEL_KTX)
+    implementation(Libs.ViewModel.LIVEDATA_EXT)
+    kapt (Libs.ViewModel.LIFECYCLE_COMPILER)
 
     implementation(Libs.Extensions.KTX)
 
