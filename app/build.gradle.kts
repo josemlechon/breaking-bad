@@ -53,8 +53,13 @@ dependencies {
     implementation(Libs.Extensions.KTX)
 
     implementation(Libs.Utils.GLIDE)
-    implementation(Libs.Utils.GLIDE_COMPILER)
+    annotationProcessor(Libs.Utils.GLIDE_COMPILER)
     implementation(Libs.Utils.TIMBER)
+
+    implementation(Libs.Network.GSON)
+    implementation(Libs.Network.OKHTTP)
+    implementation(Libs.Network.OKHHTP_LOGGER)
+    implementation(Libs.Network.RETROFIT)
 
     testImplementation(Libs.Test.JUNIT)
     androidTestImplementation(Libs.Test.JUNIT_EXT)

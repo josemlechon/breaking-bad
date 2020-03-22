@@ -2,7 +2,7 @@ package com.jml.breaking.bad.home.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.jml.breacking.bad.R
+import com.jml.breaking.bad.R
 
 class MainActivity : AppCompatActivity() {
 

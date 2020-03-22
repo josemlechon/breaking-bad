@@ -40,7 +40,6 @@ object Libs {
     object Network {
         const val GSON = "com.google.code.gson:gson:${Versions.Network.GSON}"
         const val RETROFIT = "com.squareup.retrofit2:retrofit:${Versions.Network.RETROFIT}"
-        const val RETROFIT_RX_ADAPTER = "com.squareup.retrofit2:adapter-rxjava2:${Versions.Network.RETROFIT}"
         const val RETROFIT_GSON_CONVERTER = "com.squareup.retrofit2:converter-gson:${Versions.Network.RETROFIT}"
         const val OKHTTP = "com.squareup.okhttp3:okhttp:${Versions.Network.OKHTTP}"
         const val OKHHTP_LOGGER = "com.squareup.okhttp3:logging-interceptor:${Versions.Network.OKHTTP}"
@@ -51,7 +50,6 @@ object Libs {
         const val NAVIGATION_UI = "androidx.navigation:navigation-ui:${Versions.AndroidX.NAVIGATION}"
         const val NAVIGATION_UI_KTX = "androidx.navigation:navigation-ui-ktx:${Versions.AndroidX.NAVIGATION}"
     }
-
 
     object Utils {
         const val GLIDE = "com.github.bumptech.glide:glide:${Versions.Utils.GLIDE_VERSION}"

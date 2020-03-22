@@ -34,7 +34,7 @@ object Versions {
     }
 
     object Network {
-        const val GSON = "2.8.2"
+        const val GSON = "2.8.6"
         const val RETROFIT = "2.7.2"
         const val OKHTTP = "4.4.1"
     }
