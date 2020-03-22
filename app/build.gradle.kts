@@ -1,4 +1,5 @@
 import com.jml.breaking.bad.Config
+import com.jml.breaking.bad.Libs
 
 plugins {
     id("com.android.application")
@@ -37,10 +38,24 @@ dependencies {
 
     implementation(kotlin("stdlib-jdk8"))
 
-    implementation ("androidx.appcompat:appcompat:1.1.0")
-    implementation ("androidx.core:core-ktx:1.2.0")
-    implementation ("androidx.constraintlayout:constraintlayout:1.1.3")
-    testImplementation ("junit:junit:4.12")
-    androidTestImplementation ("androidx.test.ext:junit:1.1.1")
-    androidTestImplementation ("androidx.test.espresso:espresso-core:3.2.0")
+    implementation(Libs.UI.APPCOMPAT)
+    implementation(Libs.UI.CONSTRAINTLAYOUT)
+
+    implementation(Libs.DI.KOIN)
+    implementation(Libs.DI.KOIN_ANDROID)
+    implementation(Libs.DI.KOIN_LIFECYCLE)
+    implementation(Libs.DI.KOIN_VIEWMODEL)
+
+    implementation(Libs.ViewModel.VIEWMODEL)
+    implementation(Libs.ViewModel.LIFECYCLE_EXTENSIONS)
+    implementation(Libs.ViewModel.LIFECICLY_VIEMODEL_KTX)
+
+    implementation(Libs.Extensions.KTX)
+
+    implementation(Libs.Utils.GLIDE)
+    implementation(Libs.Utils.GLIDE_COMPILER)
+    implementation(Libs.Utils.TIMBER)
+
+    testImplementation(Libs.Test.JUNIT)
+    androidTestImplementation(Libs.Test.JUNIT_EXT)
 }

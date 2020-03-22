@@ -1,4 +1,4 @@
-package com.jml.breaking.bad
+package com.jml.breaking.bad.home.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
