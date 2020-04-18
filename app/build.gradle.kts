@@ -39,7 +39,8 @@ dependencies {
 
     implementation(Libs.UI.APPCOMPAT)
     implementation(Libs.UI.CONSTRAINT_LAYOUT)
-    implementation( Libs.UI.RECYCLERVIEW)
+    implementation(Libs.UI.RECYCLERVIEW)
+    implementation(Libs.UI.CARDVIEW)
 
     implementation(Libs.DI.KOIN)
     implementation(Libs.DI.KOIN_ANDROID)
@@ -50,7 +51,7 @@ dependencies {
     implementation(Libs.ViewModel.LIFECYCLE_EXTENSIONS)
     implementation(Libs.ViewModel.LIFECYCLE_VIEMODEL_KTX)
     implementation(Libs.ViewModel.LIVEDATA_EXT)
-    kapt (Libs.ViewModel.LIFECYCLE_COMPILER)
+    kapt(Libs.ViewModel.LIFECYCLE_COMPILER)
 
     implementation(Libs.Extensions.KTX)
 
@@ -58,7 +59,7 @@ dependencies {
     annotationProcessor(Libs.Utils.GLIDE_COMPILER)
     implementation(Libs.Utils.TIMBER)
 
-    implementation(Libs.Network.GSON)
+    implementation(Libs.Network.RETROFIT_MOSHI_CONVERTER)
     implementation(Libs.Network.OKHTTP)
     implementation(Libs.Network.OKHHTP_LOGGER)
     implementation(Libs.Network.RETROFIT)

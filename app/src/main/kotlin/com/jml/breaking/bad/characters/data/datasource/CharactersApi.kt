@@ -7,5 +7,4 @@ interface CharactersApi {
 
     @GET("characters")
     suspend fun getCharacters() : List<CharacterResponse>
-
 }

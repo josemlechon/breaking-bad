@@ -40,9 +40,8 @@ object Libs {
     }
 
     object Network {
-        const val GSON = "com.google.code.gson:gson:${Versions.Network.GSON}"
         const val RETROFIT = "com.squareup.retrofit2:retrofit:${Versions.Network.RETROFIT}"
-        const val RETROFIT_GSON_CONVERTER = "com.squareup.retrofit2:converter-gson:${Versions.Network.RETROFIT}"
+        const val RETROFIT_MOSHI_CONVERTER = "com.squareup.retrofit2:converter-moshi:${Versions.Network.RETROFIT}"
         const val OKHTTP = "com.squareup.okhttp3:okhttp:${Versions.Network.OKHTTP}"
         const val OKHHTP_LOGGER = "com.squareup.okhttp3:logging-interceptor:${Versions.Network.OKHTTP}"
     }

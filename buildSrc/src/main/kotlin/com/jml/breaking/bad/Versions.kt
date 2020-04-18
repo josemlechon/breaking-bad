@@ -29,14 +29,14 @@ object Versions {
     }
 
     object DI {
-        const val KOIN = "2.1.1"
-        const val TEST = "2.1.1"
+        const val KOIN = "2.1.3"
+        const val TEST = "2.1.3"
     }
 
     object Network {
         const val GSON = "2.8.6"
-        const val RETROFIT = "2.7.2"
-        const val OKHTTP = "4.4.1"
+        const val RETROFIT = "2.8.1"
+        const val OKHTTP = "4.5.0"
     }
 
     object Utils {

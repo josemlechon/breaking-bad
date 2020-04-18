@@ -1,16 +1,17 @@
 package com.jml.breaking.bad.characters.data.model
 
-import com.google.gson.annotations.SerializedName
+
+import com.squareup.moshi.Json
 
 data class CharacterResponse(
-    @SerializedName("char_id") val id: String,
-    @SerializedName("name") val name: String,
-    @SerializedName("birthday") val birthday: String,
-    @SerializedName("occupation") val occupations: List<String>,
-    @SerializedName("img") val image: String,
-    @SerializedName("status") val status: String,
-    @SerializedName("nickname") val nickname: String,
-    @SerializedName("appearance") val appearance: List<String>,
-    @SerializedName("portrayed") val portrayed: String,
-    @SerializedName("category") val category: String
+    @field:Json(name = "char_id") val id: Int,
+    @field:Json(name = "name") val name: String?,
+    @field:Json(name = "birthday") val birthday: String?,
+    @field:Json(name = "occupation") val occupations: List<String>?,
+    @field:Json(name = "img") val image: String?,
+    @field:Json(name = "status") val status: String?,
+    @field:Json(name = "nickname") val nickname: String?,
+    @field:Json(name = "appearance") val appearance: List<String>?,
+    @field:Json(name = "portrayed") val portrayed: String?,
+    @field:Json(name = "category") val category: String?
 )

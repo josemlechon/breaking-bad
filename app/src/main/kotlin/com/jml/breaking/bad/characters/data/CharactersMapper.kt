@@ -5,21 +5,19 @@ import com.jml.breaking.bad.characters.domain.model.CharacterSeries
 
 object CharactersMapper {
 
-    fun mapCharactersResponseToModel(response: CharacterResponse): CharacterSeries {
-
-        return response.let { item ->
+    fun mapCharactersResponseToModel(response: CharacterResponse): CharacterSeries =
+        response.let { item ->
             CharacterSeries(
-                id = item.id,
-                name = item.name,
-                nickname = item.nickname,
-                birthday = item.birthday,
-                image = item.image,
-                appearance = item.appearance,
-                category = item.category,
-                status = item.status,
-                occupations = item.occupations,
-                portrayed = item.portrayed
+                id = item.id.toString(),
+                name = item.name.orEmpty(),
+                nickname = item.nickname.orEmpty(),
+                birthday = item.birthday.orEmpty(),
+                image = item.image.orEmpty(),
+                appearance = item.appearance.orEmpty(),
+                category = item.category.orEmpty(),
+                status = item.status.orEmpty(),
+                occupations = item.occupations.orEmpty(),
+                portrayed = item.portrayed.orEmpty()
             )
         }
-    }
 }

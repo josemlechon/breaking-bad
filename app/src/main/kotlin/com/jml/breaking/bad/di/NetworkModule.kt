@@ -8,7 +8,8 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
-
+import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.logging.Logger
 
 val networkModule = module {
 
@@ -23,17 +24,22 @@ fun provideDefaultOkhttpClient(context: Context): OkHttpClient {
     val cache = Cache(context.cacheDir, cacheSize)
     return OkHttpClient.Builder()
         .cache(cache)
-        .addInterceptor(HttpLoggingInterceptor())
+        .addInterceptor(
+            HttpLoggingInterceptor()
+                .setLevel(HttpLoggingInterceptor.Level.BODY)
+        )
         .build()
 }
 
 fun provideRetrofit(client: OkHttpClient): Retrofit {
     return Retrofit.Builder()
         .baseUrl(BuildConfig.SERVER_BASE_URL)
+        .addConverterFactory(MoshiConverterFactory.create())
         .client(client)
         .build()
 }
 
-fun provideCharactersApi(retrofit: Retrofit): CharactersApi = retrofit.create(CharactersApi::class.java)
+fun provideCharactersApi(retrofit: Retrofit): CharactersApi =
+    retrofit.create(CharactersApi::class.java)
 
 

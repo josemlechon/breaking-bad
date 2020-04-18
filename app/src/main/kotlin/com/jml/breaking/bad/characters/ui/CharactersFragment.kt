@@ -18,7 +18,7 @@ import com.jml.breaking.bad.common.ui.widget.CharactersAdapter
 import kotlinx.android.synthetic.main.fragment_characters.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CharactersFragment : BaseFragment(){
+class CharactersFragment : BaseFragment() {
 
     private val viewModel: CharactersViewModel by viewModel()
     private lateinit var charactersAdapter: CharactersAdapter
@@ -26,6 +26,7 @@ class CharactersFragment : BaseFragment(){
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        observeNonNull(viewModel.characters, ::showData)
         observeNonNull(viewModel.getLoadingLiveData(), ::showProgress)
     }
 
@@ -44,7 +45,7 @@ class CharactersFragment : BaseFragment(){
     private fun initList() {
         charactersAdapter = CharactersAdapter()
             .apply {
-                doOnItemClick = { _ , _ ->  }
+                doOnItemClick = { _, _ -> }
             }
         character_recycler.apply {
             adapter = charactersAdapter
