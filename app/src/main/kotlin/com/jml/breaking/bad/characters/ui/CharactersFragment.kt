@@ -27,7 +27,6 @@ class CharactersFragment : BaseFragment(){
         super.onActivityCreated(savedInstanceState)
 
         observeNonNull(viewModel.getLoadingLiveData(), ::showProgress)
-
     }
 
     override fun onCreateView(

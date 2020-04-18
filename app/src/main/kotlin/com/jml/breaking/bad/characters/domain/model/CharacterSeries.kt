@@ -1,7 +1,5 @@
 package com.jml.breaking.bad.characters.domain.model
 
-import com.google.gson.annotations.SerializedName
-
 data class CharacterSeries(
     val id: String,
     val name: String,
