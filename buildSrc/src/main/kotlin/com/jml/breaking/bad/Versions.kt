@@ -44,7 +44,13 @@ object Versions {
         const val TIMBER_VERSION = "4.7.1"
     }
     object Test {
-        const val JUNIT = "4.12"
+        const val JUNIT = "5.6.2"
         const val JUNIT_EXT = "1.1.1"
+        const val OKHTTP3 = "4.5.0"
+        const val MOCK_K = "1.9"
+
+        object AndroidX{
+            const val CORE_TESTING = "2.1.0"
+        }
     }
 }

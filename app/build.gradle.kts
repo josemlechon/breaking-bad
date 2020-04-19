@@ -65,5 +65,11 @@ dependencies {
     implementation(Libs.Network.RETROFIT)
 
     testImplementation(Libs.Test.JUNIT)
+    testImplementation(Libs.Test.Kotlin.MOCK_K){
+        because("we want to learn about this library")
+    }
+    testImplementation(Libs.Test.OkHttp3.MOCKWEBSERVER)
+    testImplementation(Libs.Test.AndroidX.CORE_TESTING)
+
     androidTestImplementation(Libs.Test.JUNIT_EXT)
 }
