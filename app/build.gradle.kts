@@ -7,6 +7,7 @@ plugins {
     kotlin("android.extensions")
     kotlin("kapt")
 
+    id("org.sonarqube")
     id("androidx.navigation.safeargs.kotlin")
 }
 
