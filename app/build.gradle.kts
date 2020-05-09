@@ -7,7 +7,7 @@ plugins {
     kotlin("android.extensions")
     kotlin("kapt")
 
-    //id("org.sonarqube")
+    id("org.sonarqube")
     id("androidx.navigation.safeargs.kotlin")
 }
 
@@ -33,6 +33,8 @@ android {
         }
     }
 }
+
+
 
 dependencies {
 
@@ -73,4 +75,8 @@ dependencies {
     testImplementation(Libs.Test.AndroidX.CORE_TESTING)
 
     androidTestImplementation(Libs.Test.JUNIT_EXT)
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform ()
 }
