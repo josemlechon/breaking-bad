@@ -77,8 +77,11 @@ dependencies {
     androidTestImplementation(Libs.Test.JUNIT_EXT)
 }
 
+/*
 tasks.withType<Test> {
-    useJUnitPlatform {
+    useJUnitPlatform()
+}
+
 
         filter {
             // These patterns follow the same format as Gradle's include() API.
@@ -87,8 +90,9 @@ tasks.withType<Test> {
             // More info in the Gradle docs:
             // https://docs.gradle.org/current/dsl/org.gradle.api.tasks.testing.Test.html#org.gradle.api.tasks.testing.Test:include(java.lang.String%5B%5D)
 
-            setIncludePatterns("**/*Test*")
+            //setIncludePatterns("** / *Test*")
 
         }
     }
 }
+*/
