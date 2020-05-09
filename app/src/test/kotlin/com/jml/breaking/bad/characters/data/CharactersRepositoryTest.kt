@@ -18,7 +18,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.net.HttpURLConnection
 
-// todo https://medium.com/code-with-lisa/2-minute-time-saver-junit-5-and-android-architecture-components-94312478cd44
+// https://medium.com/code-with-lisa/2-minute-time-saver-junit-5-and-android-architecture-components-94312478cd44
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 internal class CharactersRepositoryTest {
