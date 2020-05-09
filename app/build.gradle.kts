@@ -68,7 +68,7 @@ dependencies {
     implementation(Libs.Network.RETROFIT)
 
     testImplementation(Libs.Test.JUNIT)
-    testImplementation(Libs.Test.Kotlin.MOCK_K){
+    testImplementation(Libs.Test.Kotlin.MOCK_K) {
         because("we want to learn about this library")
     }
     testImplementation(Libs.Test.OkHttp3.MOCKWEBSERVER)
@@ -78,5 +78,23 @@ dependencies {
 }
 
 tasks.withType<Test> {
-    useJUnitPlatform ()
+    useJUnitPlatform {
+
+        filter {
+            // These patterns follow the same format as Gradle's include() API.
+            // For example, include all classes containing "Test" or "Tests" in their name,
+            // and exclude those containing "Ignored".
+            // More info in the Gradle docs:
+            // https://docs.gradle.org/current/dsl/org.gradle.api.tasks.testing.Test.html#org.gradle.api.tasks.testing.Test:include(java.lang.String%5B%5D)
+
+            setIncludePatterns("**/*Tests?*")
+            setExcludePatterns("**/*Ignored*")
+
+            // Include all test classes tagged with @Tag("slow"), but exclude those annotated with @Tag("integration")
+            includeTags("slow")
+            excludeTags("integration")
+
+
+        }
+    }
 }
