@@ -77,6 +77,15 @@ dependencies {
     androidTestImplementation(Libs.Test.JUNIT_EXT)
 }
 
+sonarqube {
+    properties {
+        property("sonar.dependencyCheck.xmlReportPath", "build/reports/dependency-check-report.xml")
+        property("sonar.dependencyCheck.htmlReportPath", "build/reports/dependency-check-report.html")
+        property("sonar.sources", "app/src,app/build.gradle.kts")
+        property("sonar.tests", "app/src/test")
+    }
+}
+
 /*
 tasks.withType<Test> {
     useJUnitPlatform()
