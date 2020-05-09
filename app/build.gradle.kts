@@ -87,13 +87,7 @@ tasks.withType<Test> {
             // More info in the Gradle docs:
             // https://docs.gradle.org/current/dsl/org.gradle.api.tasks.testing.Test.html#org.gradle.api.tasks.testing.Test:include(java.lang.String%5B%5D)
 
-            setIncludePatterns("**/*Tests?*")
-            setExcludePatterns("**/*Ignored*")
-
-            // Include all test classes tagged with @Tag("slow"), but exclude those annotated with @Tag("integration")
-            includeTags("slow")
-            excludeTags("integration")
-
+            setIncludePatterns("**/*Test*")
 
         }
     }
