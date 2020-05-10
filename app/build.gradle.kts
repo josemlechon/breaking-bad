@@ -3,35 +3,17 @@ import com.jml.breaking.bad.Libs
 
 plugins {
     id("com.android.application")
-  //  jacoco
+    jacoco
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
 
-    id("jacoco-android")
-    id("org.sonarqube")
+    //id("org.sonarqube")
     id("androidx.navigation.safeargs.kotlin")
 }
 
-
-
-/*
-jacoco {
-    toolVersion = "0.8.5"
-    reportsDir = file("$buildDir/jacoco")
-}
-
-tasks {
-    withType<Test> {
-        configure<JacocoTaskExtension> {
-            isIncludeNoLocationClasses = true
-        }
-    }
-}
-
- */
 apply(from = "../sonar.gradle")
-apply(from = "../jacoco.gradle")
+//apply(from = "../jacoco.gradle")
 apply(from = "../android_commons.gradle")
 
 android {
@@ -53,11 +35,28 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
         getByName("debug") {
-            isTestCoverageEnabled = true
+       //     isTestCoverageEnabled = true
         }
     }
-}
 
+    /*testOptions {
+        unitTests.apply {
+            all(KotlinClosure1<Any, Test>({
+                (this as Test).also {
+                    jacoco {
+                        isIncludeAndroidResources = true
+                    }
+                }
+            }, this))
+
+            isIncludeAndroidResources = true
+        }
+    }
+
+     */
+
+
+}
 
 dependencies {
 
@@ -90,7 +89,8 @@ dependencies {
     implementation(Libs.Network.OKHHTP_LOGGER)
     implementation(Libs.Network.RETROFIT)
 
-    testImplementation(Libs.Test.JUNIT)
+    testImplementation(Libs.Test.JUNIT_API)
+    testImplementation(Libs.Test.JUNIT_ENG)
     testImplementation(Libs.Test.Kotlin.MOCK_K) {
         because("we want to learn about this library")
     }
@@ -98,4 +98,8 @@ dependencies {
     testImplementation(Libs.Test.AndroidX.CORE_TESTING)
 
     androidTestImplementation(Libs.Test.JUNIT_EXT)
+}
+
+tasks.withType<Test>{
+    useJUnitPlatform()
 }

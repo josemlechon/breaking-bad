@@ -74,7 +74,8 @@ object Libs {
     }
 
     object Test {
-        const val JUNIT: String = "org.junit.jupiter:junit-jupiter-api:${Versions.Test.JUNIT}"
+        const val JUNIT_API: String = "org.junit.jupiter:junit-jupiter-api:${Versions.Test.JUNIT}"
+        const val JUNIT_ENG: String = "org.junit.jupiter:junit-jupiter-engine:${Versions.Test.JUNIT}"
         const val JUNIT_EXT: String = "androidx.test.ext:junit:${Versions.Test.JUNIT_EXT}"
 
         object AndroidX {
@@ -89,5 +90,7 @@ object Libs {
         object OkHttp3 {
             const val MOCKWEBSERVER = "com.squareup.okhttp3:mockwebserver:${Versions.Test.OKHTTP3}"
         }
+
+        val libs = listOf(JUNIT_API, JUNIT_ENG)
     }
 }
