@@ -43,7 +43,7 @@ class CharactersAdapter :
             getItem(adapterPosition)
                 ?.takeIf { doOnItemClick != null }
                 ?.let {
-                    doOnItemClick?.invoke(adapterPosition, it as CharacterSeries)
+                    doOnItemClick?.invoke(adapterPosition, it )
                 }
         }
     }

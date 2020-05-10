@@ -3,6 +3,7 @@ import com.jml.breaking.bad.Libs
 
 plugins {
     id("com.android.application")
+    jacoco
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
@@ -10,6 +11,12 @@ plugins {
     id("org.sonarqube")
     id("androidx.navigation.safeargs.kotlin")
 }
+
+jacoco {
+    toolVersion = "0.8.5"
+   reportsDir = file("$buildDir/jacoco")
+}
+
 
 apply(from = "../android_commons.gradle")
 
@@ -30,6 +37,9 @@ android {
         getByName("release") {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+        }
+        getByName("debug") {
+            isTestCoverageEnabled = true
         }
     }
 }
@@ -80,28 +90,28 @@ dependencies {
 sonarqube {
     properties {
         property("sonar.dependencyCheck.xmlReportPath", "build/reports/dependency-check-report.xml")
-        property("sonar.dependencyCheck.htmlReportPath", "build/reports/dependency-check-report.html")
+        property(
+            "sonar.dependencyCheck.htmlReportPath",
+            "build/reports/dependency-check-report.html"
+        )
         property("sonar.sources", "app/src,app/build.gradle.kts,app/src/test")
         property("sonar.tests", "app/src/test")
+        property("sonar.java.coveragePlugin", "jacoco")
+        property("sonar.java.coveragePlugin", "jacoco")
+        property("sonar.dynamicAnalysis", "reuseReports")
+       // property("sonar.jacoco.reportPath", "build/reports")
+        property("sonar.coverage.jacoco.xmlReportPaths", "build/reports/coverage/debug/report.xml")
     }
 }
 
-/*
-tasks.withType<Test> {
-    useJUnitPlatform()
-}
 
-
-        filter {
-            // These patterns follow the same format as Gradle's include() API.
-            // For example, include all classes containing "Test" or "Tests" in their name,
-            // and exclude those containing "Ignored".
-            // More info in the Gradle docs:
-            // https://docs.gradle.org/current/dsl/org.gradle.api.tasks.testing.Test.html#org.gradle.api.tasks.testing.Test:include(java.lang.String%5B%5D)
-
-            //setIncludePatterns("** / *Test*")
-
-        }
+tasks.withType<JacocoReport> {
+   /* reports {
+        xml.isEnabled = true
+       // xml.destination = file("${buildDir}/reports/jacocoTestReport.xml")
+        csv.isEnabled = false
+        html.destination = file("${buildDir}/jacocoHtml")
     }
+
+    */
 }
-*/

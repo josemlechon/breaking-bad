@@ -1,6 +1,5 @@
 package com.jml.breaking.bad.common.extensions
 
-import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.*
 import com.jml.breaking.bad.common.ui.BaseActivity
@@ -30,7 +29,7 @@ inline fun <reified T : ViewModel> BaseFragment.getParentViewModel(
 inline fun <reified T : ViewModel> FragmentActivity.getViewModel(
     viewModelFactory: ViewModelProvider.Factory
 ): T {
-    return ViewModelProviders.of(this, viewModelFactory)[T::class.java]
+    return ViewModelProvider(this, viewModelFactory)[T::class.java]
 }
 
 fun <T : Any, L : LiveData<T>> LifecycleOwner.observe(
