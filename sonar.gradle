@@ -9,14 +9,17 @@ sonarqube {
         property("sonar.java.coveragePlugin", "jacoco")
         // taken from `jacoco.gradle`
         property(
-            "sonar.coverage.exclusions",
-            "**/test/**,**/androidTest/**,**/R.class,**/BuildConfig.*,**/Manifest*.*,**/*Test*.*,**/*Dto*.*,**/android/databinding/*,**/androidx/databinding/*,**/di/module/*,**/*MapperImpl*.*,**/BuildConfig.*,**/*Component*.*,**/*BR*.*,**/Manifest*.*,**/*Companion*.*,**/*Module.*,**/*Dagger*.*,**/*MembersInjector*.*,**/*Extensions*.*,**/InputMethodManagerLeaks.*,**/*_Factory*.*,**/*_Provide*Factory*.*"
+                "sonar.coverage.exclusions",
+                "**/test/**,**/androidTest/**,**/R.class,**/BuildConfig.*,**/Manifest*.*,**/*Test*.*,**/*Dto*.*,**/android/databinding/*,**/androidx/databinding/*,**/di/module/*,**/*MapperImpl*.*,**/BuildConfig.*,**/*Component*.*,**/*BR*.*,**/Manifest*.*,**/*Companion*.*,**/*Module.*,**/*Dagger*.*,**/*MembersInjector*.*,**/*Extensions*.*,**/InputMethodManagerLeaks.*,**/*_Factory*.*,**/*_Provide*Factory*.*"
         )
 
-        property ("sonar.tests", "src/test")
-       // property ("sonar.jacoco.coverage.reportPaths", "$buildDir/reports/jacoco/jacocoTestReport/jacocoTestReport.xml")
-        property ("sonar.junit.reportsPaths", "$buildDir/test-results/")
-        //property ("sonar.androidLint.reportPaths", "$buildDir/reports/lint-results-debug.xml")
+        property("sonar.tests", "src/test")
+        property("sonar.coverage.jacoco.xmlReportPaths", "$buildDir/reports/jacoco/jacocoTestReport/jacocoTestReport.xml")
+        property "sonar.jacoco.reportPaths", "$buildDir/jacoco/*.exec"
+        property("sonar.junit.reportsPaths", "$buildDir/test-results/")
+
+        property("sonar.androidLint.reportPaths", "$buildDir/reports/lint-results.xml")
+        property("sonar.java.binaries", "$buildDir/intermediates/classes/staging/debug,$buildDir/tmp/kotlin-classes")
 
     }
 }

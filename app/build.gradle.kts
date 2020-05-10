@@ -8,7 +8,7 @@ plugins {
     kotlin("android.extensions")
     kotlin("kapt")
 
-    //id("org.sonarqube")
+
     id("androidx.navigation.safeargs.kotlin")
 }
 
@@ -38,24 +38,6 @@ android {
        //     isTestCoverageEnabled = true
         }
     }
-
-    /*testOptions {
-        unitTests.apply {
-            all(KotlinClosure1<Any, Test>({
-                (this as Test).also {
-                    jacoco {
-                        isIncludeAndroidResources = true
-                    }
-                }
-            }, this))
-
-            isIncludeAndroidResources = true
-        }
-    }
-
-     */
-
-
 }
 
 dependencies {
@@ -99,6 +81,7 @@ dependencies {
 
     androidTestImplementation(Libs.Test.JUNIT_EXT)
 }
+
 
 tasks.withType<Test>{
     useJUnitPlatform()
