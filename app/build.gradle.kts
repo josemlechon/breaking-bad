@@ -3,21 +3,35 @@ import com.jml.breaking.bad.Libs
 
 plugins {
     id("com.android.application")
-    jacoco
+  //  jacoco
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
 
+    id("jacoco-android")
     id("org.sonarqube")
     id("androidx.navigation.safeargs.kotlin")
 }
 
+
+
+/*
 jacoco {
     toolVersion = "0.8.5"
-   reportsDir = file("$buildDir/jacoco")
+    reportsDir = file("$buildDir/jacoco")
 }
 
+tasks {
+    withType<Test> {
+        configure<JacocoTaskExtension> {
+            isIncludeNoLocationClasses = true
+        }
+    }
+}
 
+ */
+apply(from = "../sonar.gradle")
+apply(from = "../jacoco.gradle")
 apply(from = "../android_commons.gradle")
 
 android {
@@ -45,7 +59,6 @@ android {
 }
 
 
-
 dependencies {
 
     implementation(kotlin("stdlib-jdk8"))
@@ -69,7 +82,7 @@ dependencies {
     implementation(Libs.Extensions.KTX)
 
     implementation(Libs.Utils.GLIDE)
-    annotationProcessor(Libs.Utils.GLIDE_COMPILER)
+    kapt(Libs.Utils.GLIDE_COMPILER)
     implementation(Libs.Utils.TIMBER)
 
     implementation(Libs.Network.RETROFIT_MOSHI_CONVERTER)
@@ -85,33 +98,4 @@ dependencies {
     testImplementation(Libs.Test.AndroidX.CORE_TESTING)
 
     androidTestImplementation(Libs.Test.JUNIT_EXT)
-}
-
-sonarqube {
-    properties {
-        property("sonar.dependencyCheck.xmlReportPath", "build/reports/dependency-check-report.xml")
-        property(
-            "sonar.dependencyCheck.htmlReportPath",
-            "build/reports/dependency-check-report.html"
-        )
-        property("sonar.sources", "app/src,app/build.gradle.kts,app/src/test")
-        property("sonar.tests", "app/src/test")
-        property("sonar.java.coveragePlugin", "jacoco")
-        property("sonar.java.coveragePlugin", "jacoco")
-        property("sonar.dynamicAnalysis", "reuseReports")
-       // property("sonar.jacoco.reportPath", "build/reports")
-        property("sonar.coverage.jacoco.xmlReportPaths", "build/reports/coverage/debug/report.xml")
-    }
-}
-
-
-tasks.withType<JacocoReport> {
-   /* reports {
-        xml.isEnabled = true
-       // xml.destination = file("${buildDir}/reports/jacocoTestReport.xml")
-        csv.isEnabled = false
-        html.destination = file("${buildDir}/jacocoHtml")
-    }
-
-    */
 }

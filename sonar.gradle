@@ -1,0 +1,34 @@
+apply plugin: "org.sonarqube"
+
+sonarqube {
+    properties {
+        property("sonar.organization", "josemlechon")
+        property("sonar.projectVersion", "1.0.0")
+        property("sonar.language", "kotlin")
+        property("sonar.sourceEncoding", "UTF-8")
+        property("sonar.java.coveragePlugin", "jacoco")
+        // taken from `jacoco.gradle`
+        property(
+            "sonar.coverage.exclusions",
+            "**/test/**,**/androidTest/**,**/R.class,**/BuildConfig.*,**/Manifest*.*,**/*Test*.*,**/com/example/databinding/*,**/com/example/generated/callback/*,**/*Dto*.*,**/android/databinding/*,**/androidx/databinding/*,**/di/module/*,**/*MapperImpl*.*,**/BuildConfig.*,**/*Component*.*,**/*BR*.*,**/Manifest*.*,**/*Companion*.*,**/*Module.*,**/*Dagger*.*,**/*MembersInjector*.*,**/*Extensions*.*,**/InputMethodManagerLeaks.*,**/*_Factory*.*,**/*_Provide*Factory*.*"
+        )
+
+
+        /*     property("sonar.dependencyCheck.xmlReportPath", "build/reports/dependency-check-report.xml")
+             property(
+                 "sonar.dependencyCheck.htmlReportPath",
+                 "build/reports/dependency-check-report.html"
+             )
+             property("sonar.sources", "app/src,app/build.gradle.kts,app/src/test")
+             property("sonar.tests", "app/src/test")
+             property("sonar.java.coveragePlugin", "jacoco")
+             property("sonar.dynamicAnalysis", "reuseReports")
+             // property("sonar.jacoco.reportPath", "build/reports")
+             // property("sonar.coverage.jacoco.xmlReportPaths", "build/reports/coverage/debug/report.xml")
+         */
+    }
+}
+
+tasks.sonarqube {
+    dependsOn(":app:testDevDebugUnitTestCoverage")
+}
