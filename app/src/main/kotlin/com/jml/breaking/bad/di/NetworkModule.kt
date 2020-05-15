@@ -2,18 +2,20 @@ package com.jml.breaking.bad.di
 
 import android.content.Context
 import com.jml.breaking.bad.BuildConfig
+import com.jml.breaking.bad.characters.data.datasource.CharactersApi
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
-
+import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.logging.Logger
 
 val networkModule = module {
 
     single { provideDefaultOkhttpClient(get()) }
     single { provideRetrofit(get()) }
-    //single { provideExampleApi(get()) }
+    single { provideCharactersApi(get()) }
 }
 
 fun provideDefaultOkhttpClient(context: Context): OkHttpClient {
@@ -22,17 +24,22 @@ fun provideDefaultOkhttpClient(context: Context): OkHttpClient {
     val cache = Cache(context.cacheDir, cacheSize)
     return OkHttpClient.Builder()
         .cache(cache)
-        .addInterceptor(HttpLoggingInterceptor())
+        .addInterceptor(
+            HttpLoggingInterceptor()
+                .setLevel(HttpLoggingInterceptor.Level.BODY)
+        )
         .build()
 }
 
 fun provideRetrofit(client: OkHttpClient): Retrofit {
     return Retrofit.Builder()
         .baseUrl(BuildConfig.SERVER_BASE_URL)
+        .addConverterFactory(MoshiConverterFactory.create())
         .client(client)
         .build()
 }
 
-//fun provideExampleApi(retrofit: Retrofit): ExamplesApi = retrofit.create(ExamplesApi::class.java)
+fun provideCharactersApi(retrofit: Retrofit): CharactersApi =
+    retrofit.create(CharactersApi::class.java)
 
 

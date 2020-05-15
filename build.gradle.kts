@@ -1,15 +1,18 @@
+
 buildscript {
     val kotlinVersion = "1.3.61"
 
     repositories {
         jcenter()
         google()
+        maven("https://plugins.gradle.org/m2/")
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:3.6.1")
-        classpath(kotlin("gradle-plugin", version = kotlinVersion ))
+        classpath("com.android.tools.build:gradle:3.6.3")
+        classpath(kotlin("gradle-plugin", version = kotlinVersion))
 
-        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.2.1")
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.2.2")
+        classpath("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.8")
     }
 }
 
