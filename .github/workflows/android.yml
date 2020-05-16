@@ -27,6 +27,8 @@ jobs:
         java-version: 1.8
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Create coverate
+      run: ./gradlew createDebugCoverageReport
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
       env:

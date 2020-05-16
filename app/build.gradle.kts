@@ -1,23 +1,23 @@
 import com.jml.breaking.bad.Config
 import com.jml.breaking.bad.Libs
+import com.jml.breaking.bad.debug
+import com.jml.breaking.bad.release
+
+//https://github.com/kittinunf/Fuse/blob/master/build.gradle.kts
 
 plugins {
     id("com.android.application")
     jacoco
+    checkstyle
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
-
-
-    id("androidx.navigation.safeargs.kotlin")
+   // id("org.sonarqube")
+   // id("androidx.navigation.safeargs.kotlin")
 }
 
-apply(from = "../sonar.gradle")
-//apply(from = "../jacoco.gradle")
-apply(from = "../android_commons.gradle")
-
 android {
-
+    compileSdkVersion(Config.AndroidSdk.COMPILE)
     defaultConfig {
         minSdkVersion(Config.AndroidSdk.MIN)
         targetSdkVersion(Config.AndroidSdk.TARGET)
@@ -29,15 +29,22 @@ android {
         buildConfigField("String", "SERVER_BASE_URL", "\"https://breakingbadapi.com/api/\"")
     }
 
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
-        getByName("debug") {
-       //     isTestCoverageEnabled = true
+        debug {
+            isTestCoverageEnabled = true
         }
     }
+
+    lintOptions.isAbortOnError = false
 }
 
 dependencies {
@@ -82,7 +89,27 @@ dependencies {
     androidTestImplementation(Libs.Test.JUNIT_EXT)
 }
 
-
-tasks.withType<Test>{
+tasks.withType<Test> {
     useJUnitPlatform()
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
 }
+
+/*
+
+sonarqube {
+    properties {
+        property("sonar.projectKey", "josemlechon_breaking-bad")
+        property("sonar.organization", "josemlechon")
+        property("sonar.host.url", "https://sonarcloud.io")
+        property("sonar.login", "288735357f3535f25d09ad55caf4176f07bdbff1")
+        property("sonar.projectName", "Breaking Bad")
+        property("sonar.jacoco.reportPaths", "build/jacoco/*.exec")
+        property("sonar.androidLint.reportPaths", "build/reports/lint-results.xml")
+        property("sonar.junit.reportsPaths", "build/test-results")
+        property("sonar.coverage.jacoco.xmlReportPaths", "build/test-results/*Debug*/*.xml")
+    }
+}
+
+ */
