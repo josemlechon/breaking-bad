@@ -1,6 +1,7 @@
 package com.jml.breaking.bad
 
 import com.android.build.gradle.*
+import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
 import org.gradle.api.plugins.BasePlugin
@@ -22,7 +23,7 @@ fun Project.applyKotlinFoldersInModules() {
         }
 }
 
-fun LibraryExtension.applyKotlinFolders(){
+fun BaseAppModuleExtension.applyKotlinFolders(){
 
     sourceSets.forEach {
         it.java.srcDir("src/${it.name}/kotlin")

@@ -1,9 +1,6 @@
-import com.jml.breaking.bad.Config
-import com.jml.breaking.bad.Libs
-import com.jml.breaking.bad.debug
-import com.jml.breaking.bad.release
+import com.jml.breaking.bad.*
+import com.jml.breaking.bad.applyKotlinFolders
 
-//https://github.com/kittinunf/Fuse/blob/master/build.gradle.kts
 
 plugins {
     id("com.android.application")
@@ -42,6 +39,8 @@ android {
             isTestCoverageEnabled = true
         }
     }
+
+    applyKotlinFolders()
 
     lintOptions.isAbortOnError = false
 }
@@ -94,21 +93,3 @@ tasks.withType<Test> {
         events("passed", "skipped", "failed")
     }
 }
-
-/*
-
-sonarqube {
-    properties {
-        property("sonar.projectKey", "josemlechon_breaking-bad")
-        property("sonar.organization", "josemlechon")
-        property("sonar.host.url", "https://sonarcloud.io")
-        property("sonar.login", "288735357f3535f25d09ad55caf4176f07bdbff1")
-        property("sonar.projectName", "Breaking Bad")
-        property("sonar.jacoco.reportPaths", "build/jacoco/*.exec")
-        property("sonar.androidLint.reportPaths", "build/reports/lint-results.xml")
-        property("sonar.junit.reportsPaths", "build/test-results")
-        property("sonar.coverage.jacoco.xmlReportPaths", "build/test-results/*Debug*/*.xml")
-    }
-}
-
- */
