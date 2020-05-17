@@ -1,6 +1,7 @@
+import com.jml.breaking.bad.applyKotlinFoldersInModules
 
 buildscript {
-    val kotlinVersion = "1.3.61"
+    val kotlinVersion = "1.3.72"
 
     repositories {
         jcenter()
@@ -24,6 +25,10 @@ allprojects {
         mavenCentral()
         maven("http://repository.jetbrains.com/all")
     }
+}
+
+subprojects {
+    applyKotlinFoldersInModules()
 }
 
 tasks.register("clean").configure {

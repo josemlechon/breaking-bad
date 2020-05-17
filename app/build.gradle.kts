@@ -1,23 +1,27 @@
-import com.jml.breaking.bad.Config
-import com.jml.breaking.bad.Libs
+import com.jml.breaking.bad.*
+import com.jml.breaking.bad.applyKotlinFolders
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 
 plugins {
     id("com.android.application")
     jacoco
+    checkstyle
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
-
-
     id("androidx.navigation.safeargs.kotlin")
 }
 
-apply(from = "../sonar.gradle")
-//apply(from = "../jacoco.gradle")
-apply(from = "../android_commons.gradle")
+tasks.withType(KotlinCompile::class)
+    .configureEach {
+        kotlinOptions {
+            jvmTarget = JavaVersion.VERSION_1_8.toString()
+        }
+    }
 
 android {
-
+    compileSdkVersion(Config.AndroidSdk.COMPILE)
     defaultConfig {
         minSdkVersion(Config.AndroidSdk.MIN)
         targetSdkVersion(Config.AndroidSdk.TARGET)
@@ -29,15 +33,24 @@ android {
         buildConfigField("String", "SERVER_BASE_URL", "\"https://breakingbadapi.com/api/\"")
     }
 
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
-        getByName("debug") {
-       //     isTestCoverageEnabled = true
+        debug {
+            isTestCoverageEnabled = true
         }
     }
+
+    applyKotlinFolders()
+
+    lintOptions.isAbortOnError = false
 }
 
 dependencies {
@@ -82,7 +95,14 @@ dependencies {
     androidTestImplementation(Libs.Test.JUNIT_EXT)
 }
 
-
-tasks.withType<Test>{
+tasks.withType<Test> {
     useJUnitPlatform()
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
+}
+
+jacoco {
+    toolVersion = "0.8.5"
+    reportsDir = file("${project.projectDir}/app/build/reports")
 }
