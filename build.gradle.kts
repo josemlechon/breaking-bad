@@ -14,6 +14,7 @@ buildscript {
 
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.2.2")
         classpath("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.8")
+        classpath ("de.mannodermaus.gradle.plugins:android-junit5:1.6.2.0")
     }
 }
 
@@ -29,4 +30,8 @@ allprojects {
 
 subprojects {
     applyKotlinFoldersInModules()
+}
+
+tasks.register("clean").configure {
+    delete("build")
 }

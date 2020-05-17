@@ -13,5 +13,14 @@ internal class ExampleTest {
 
         assertTrue(example.doSomething())
     }
+
+
+    @Test
+    fun `this one fails`() = runBlocking {
+
+        val example = Example()
+
+        assertTrue(example.doSomething())
+    }
 }
 
