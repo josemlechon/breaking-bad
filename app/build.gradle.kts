@@ -1,24 +1,14 @@
 import com.jml.breaking.bad.*
-import com.jml.breaking.bad.applyKotlinFolders
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 
 plugins {
     id("com.android.application")
-    jacoco
+    //jacoco
     checkstyle
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
     id("androidx.navigation.safeargs.kotlin")
 }
-
-tasks.withType(KotlinCompile::class)
-    .configureEach {
-        kotlinOptions {
-            jvmTarget = JavaVersion.VERSION_1_8.toString()
-        }
-    }
 
 android {
     compileSdkVersion(Config.AndroidSdk.COMPILE)
@@ -33,11 +23,6 @@ android {
         buildConfigField("String", "SERVER_BASE_URL", "\"https://breakingbadapi.com/api/\"")
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -48,7 +33,9 @@ android {
         }
     }
 
-    applyKotlinFolders()
+    sourceSets.forEach {
+        it.java.srcDir("src/${it.name}/kotlin")
+    }
 
     lintOptions.isAbortOnError = false
 }
@@ -61,11 +48,15 @@ dependencies {
     implementation(Libs.UI.CONSTRAINT_LAYOUT)
     implementation(Libs.UI.RECYCLERVIEW)
     implementation(Libs.UI.CARDVIEW)
+    implementation(Libs.UI.DESIGN_MATERIAL)
 
     implementation(Libs.DI.KOIN)
     implementation(Libs.DI.KOIN_ANDROID)
     implementation(Libs.DI.KOIN_LIFECYCLE)
     implementation(Libs.DI.KOIN_VIEWMODEL)
+
+    implementation(Libs.Navigation.NAVIGATION_FRAGMENT)
+    implementation(Libs.Navigation.NAVIGATION_UI)
 
     implementation(Libs.ViewModel.VIEWMODEL_KTX)
     implementation(Libs.ViewModel.LIFECYCLE_EXTENSIONS)
@@ -95,6 +86,13 @@ dependencies {
     androidTestImplementation(Libs.Test.JUNIT_EXT)
 }
 
+/*
+tasks.withType(KotlinCompile::class)
+    .configureEach {
+        kotlinOptions {
+            jvmTarget = JavaVersion.VERSION_1_8.toString()
+        }
+    }
 tasks.withType<Test> {
     useJUnitPlatform()
     testLogging {
@@ -102,7 +100,4 @@ tasks.withType<Test> {
     }
 }
 
-jacoco {
-    toolVersion = "0.8.5"
-    reportsDir = file("${project.projectDir}/app/build/reports")
-}
+ */
