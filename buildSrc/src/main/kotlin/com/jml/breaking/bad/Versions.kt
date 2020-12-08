@@ -8,7 +8,6 @@ object Versions {
         const val COROUTINES = "1.3.5"
     }
 
-
     object UI {
         const val RECYCLER = "1.1.0"
 

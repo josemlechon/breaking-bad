@@ -1,5 +1,5 @@
 buildscript {
-    val kotlinVersion = "1.3.72"
+    val kotlinVersion = "1.4.0"
 
     repositories {
         google()
@@ -7,10 +7,10 @@ buildscript {
         maven("https://plugins.gradle.org/m2/")
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:4.0.0")
+        classpath("com.android.tools.build:gradle:4.2.0-beta01")
         classpath(kotlin("gradle-plugin", version = kotlinVersion))
 
-        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.2.2")
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.3.2")
         //classpath("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.8")
     }
 }
@@ -25,11 +25,8 @@ allprojects {
 }
 
 subprojects {
-//    applyKotlinFoldersInModules()
-}
-/*
-tasks.register("clean").configure {
-//    delete("build")
-}
 
- */
+    tasks.withType<Test>().configureEach {
+        useJUnitPlatform()
+    }
+}

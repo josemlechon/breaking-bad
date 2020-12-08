@@ -2,13 +2,17 @@ import com.jml.breaking.bad.*
 
 plugins {
     id("com.android.application")
-    //jacoco
+   //jacoco
     checkstyle
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
     id("androidx.navigation.safeargs.kotlin")
+
+    id("com.jacoco-plugin")
+    //id("jacoco-android")
 }
+
 
 android {
     compileSdkVersion(Config.AndroidSdk.COMPILE)
@@ -37,6 +41,11 @@ android {
         it.java.srcDir("src/${it.name}/kotlin")
     }
 
+    compileOptions.apply {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
     lintOptions.isAbortOnError = false
 }
 
@@ -44,11 +53,11 @@ dependencies {
 
     implementation(kotlin("stdlib-jdk8"))
 
-    implementation(Libs.UI.APPCOMPAT)
-    implementation(Libs.UI.CONSTRAINT_LAYOUT)
-    implementation(Libs.UI.RECYCLERVIEW)
-    implementation(Libs.UI.CARDVIEW)
-    implementation(Libs.UI.DESIGN_MATERIAL)
+    implementation(UIDependenciesPlugin.APPCOMPAT)
+    implementation(UIDependenciesPlugin.CONSTRAINT_LAYOUT)
+    implementation(UIDependenciesPlugin.RECYCLERVIEW)
+    implementation(UIDependenciesPlugin.CARDVIEW)
+    implementation(UIDependenciesPlugin.DESIGN_MATERIAL)
 
     implementation(Libs.DI.KOIN)
     implementation(Libs.DI.KOIN_ANDROID)
@@ -76,7 +85,7 @@ dependencies {
     implementation(Libs.Network.RETROFIT)
 
     testImplementation(Libs.Test.JUNIT_API)
-    testImplementation(Libs.Test.JUNIT_ENG)
+    testRuntimeOnly(Libs.Test.JUNIT_ENG)
     testImplementation(Libs.Test.Kotlin.MOCK_K) {
         because("we want to learn about this library")
     }
@@ -85,19 +94,3 @@ dependencies {
 
     androidTestImplementation(Libs.Test.JUNIT_EXT)
 }
-
-/*
-tasks.withType(KotlinCompile::class)
-    .configureEach {
-        kotlinOptions {
-            jvmTarget = JavaVersion.VERSION_1_8.toString()
-        }
-    }
-tasks.withType<Test> {
-    useJUnitPlatform()
-    testLogging {
-        events("passed", "skipped", "failed")
-    }
-}
-
- */

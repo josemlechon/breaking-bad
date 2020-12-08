@@ -1,12 +1,25 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-    kotlin("jvm") version "1.3.72"
+    kotlin("jvm") version "1.4.0"
 }
 
 repositories {
-    jcenter()
+    mavenCentral()
     google()
+    jcenter()
+    maven {
+        url = uri("https://plugins.gradle.org/m2/")
+    }
+}
+
+
+dependencies {
+
+    implementation("com.android.tools.build:gradle:4.2.0-beta01")
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.0")
+
+    implementation(gradleApi())
+    implementation(localGroovy())
+
 }
 /*
 dependencies {
