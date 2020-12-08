@@ -1,24 +1,18 @@
 import com.jml.breaking.bad.*
-import com.jml.breaking.bad.applyKotlinFolders
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 
 plugins {
     id("com.android.application")
-    jacoco
+   //jacoco
     checkstyle
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
     id("androidx.navigation.safeargs.kotlin")
+
+    id("com.jacoco-plugin")
+    //id("jacoco-android")
 }
 
-tasks.withType(KotlinCompile::class)
-    .configureEach {
-        kotlinOptions {
-            jvmTarget = JavaVersion.VERSION_1_8.toString()
-        }
-    }
 
 android {
     compileSdkVersion(Config.AndroidSdk.COMPILE)
@@ -33,11 +27,6 @@ android {
         buildConfigField("String", "SERVER_BASE_URL", "\"https://breakingbadapi.com/api/\"")
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -48,7 +37,14 @@ android {
         }
     }
 
-    applyKotlinFolders()
+    sourceSets.forEach {
+        it.java.srcDir("src/${it.name}/kotlin")
+    }
+
+    compileOptions.apply {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
 
     lintOptions.isAbortOnError = false
 }
@@ -57,15 +53,19 @@ dependencies {
 
     implementation(kotlin("stdlib-jdk8"))
 
-    implementation(Libs.UI.APPCOMPAT)
-    implementation(Libs.UI.CONSTRAINT_LAYOUT)
-    implementation(Libs.UI.RECYCLERVIEW)
-    implementation(Libs.UI.CARDVIEW)
+    implementation(UIDependenciesPlugin.APPCOMPAT)
+    implementation(UIDependenciesPlugin.CONSTRAINT_LAYOUT)
+    implementation(UIDependenciesPlugin.RECYCLERVIEW)
+    implementation(UIDependenciesPlugin.CARDVIEW)
+    implementation(UIDependenciesPlugin.DESIGN_MATERIAL)
 
     implementation(Libs.DI.KOIN)
     implementation(Libs.DI.KOIN_ANDROID)
     implementation(Libs.DI.KOIN_LIFECYCLE)
     implementation(Libs.DI.KOIN_VIEWMODEL)
+
+    implementation(Libs.Navigation.NAVIGATION_FRAGMENT)
+    implementation(Libs.Navigation.NAVIGATION_UI)
 
     implementation(Libs.ViewModel.VIEWMODEL_KTX)
     implementation(Libs.ViewModel.LIFECYCLE_EXTENSIONS)
@@ -85,7 +85,7 @@ dependencies {
     implementation(Libs.Network.RETROFIT)
 
     testImplementation(Libs.Test.JUNIT_API)
-    testImplementation(Libs.Test.JUNIT_ENG)
+    testRuntimeOnly(Libs.Test.JUNIT_ENG)
     testImplementation(Libs.Test.Kotlin.MOCK_K) {
         because("we want to learn about this library")
     }
@@ -93,16 +93,4 @@ dependencies {
     testImplementation(Libs.Test.AndroidX.CORE_TESTING)
 
     androidTestImplementation(Libs.Test.JUNIT_EXT)
-}
-
-tasks.withType<Test> {
-    useJUnitPlatform()
-    testLogging {
-        events("passed", "skipped", "failed")
-    }
-}
-
-jacoco {
-    toolVersion = "0.8.5"
-    reportsDir = file("${project.projectDir}/app/build/reports")
 }

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.transition.MaterialFadeThrough
 import com.jml.breaking.bad.R
 import com.jml.breaking.bad.characters.domain.model.CharacterSeries
 import com.jml.breaking.bad.characters.domain.vm.CharactersViewModel
@@ -30,6 +31,10 @@ class CharactersFragment : BaseFragment() {
         observeNonNull(viewModel.getLoadingLiveData(), ::showProgress)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enterTransition = MaterialFadeThrough.create()
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

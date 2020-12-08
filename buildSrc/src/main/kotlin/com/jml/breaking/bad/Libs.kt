@@ -3,12 +3,15 @@ package com.jml.breaking.bad
 object Libs {
 
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.BUILD_TOOLS_VERSION}"
-    const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.Kotlin.KOTLIN}"
+    const val kotlinGradlePlugin =
+        "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.Kotlin.KOTLIN}"
 
     object Kotlin {
         const val KOTLIN = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.Kotlin.KOTLIN}"
-        const val COROUTINES_CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Kotlin.COROUTINES}"
-        const val COROUTINES_ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Kotlin.COROUTINES}"
+        const val COROUTINES_CORE =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Kotlin.COROUTINES}"
+        const val COROUTINES_ANDROID =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Kotlin.COROUTINES}"
     }
 
     object UI {
@@ -16,7 +19,7 @@ object Libs {
         const val CARDVIEW = "androidx.cardview:cardview:${Versions.UI.CARD}"
         const val CONSTRAINT_LAYOUT =
             "androidx.constraintlayout:constraintlayout:${Versions.UI.CONSTRAINT}"
-        const val DESIGN_COMPAT = "com.google.android.material:material:${Versions.UI.DESIGN}"
+        const val DESIGN_MATERIAL = "com.google.android.material:material:${Versions.UI.DESIGN}"
         const val APPCOMPAT = "androidx.appcompat:appcompat:${Versions.UI.APPCOMPAT}"
         const val GRIDLAYOUT = "androidx.gridlayout:gridlayout:${Versions.UI.GRIDLAYOUT}"
 
@@ -59,11 +62,13 @@ object Libs {
 
     object Navigation {
         const val NAVIGATION_FRAGMENT =
-            "androidx.navigation:navigation-fragment:${Versions.AndroidX.NAVIGATION}"
+            "androidx.navigation:navigation-fragment-ktx:${Versions.AndroidX.NAVIGATION}"
         const val NAVIGATION_UI =
-            "androidx.navigation:navigation-ui:${Versions.AndroidX.NAVIGATION}"
-        const val NAVIGATION_UI_KTX =
             "androidx.navigation:navigation-ui-ktx:${Versions.AndroidX.NAVIGATION}"
+        const val NAVIGATION_DYNAMIC_FEATURES =
+            "androidx.navigation:navigation-dynamic-features-fragment:${Versions.AndroidX.NAVIGATION}"
+        const val NAVIGATION_TESTING =
+            "androidx.navigation:navigation-testing:${Versions.AndroidX.NAVIGATION}"
     }
 
     object Utils {
@@ -75,7 +80,7 @@ object Libs {
 
     object Test {
         const val JUNIT_API: String = "org.junit.jupiter:junit-jupiter-api:${Versions.Test.JUNIT}"
-        const val JUNIT_ENG: String = "org.junit.jupiter:junit-jupiter-engine:${Versions.Test.JUNIT}"
+        const val JUNIT_ENG: String = "org.junit.jupiter:junit-jupiter-engine"
         const val JUNIT_EXT: String = "androidx.test.ext:junit:${Versions.Test.JUNIT_EXT}"
 
         object AndroidX {

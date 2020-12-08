@@ -8,19 +8,18 @@ object Versions {
         const val COROUTINES = "1.3.5"
     }
 
-
     object UI {
         const val RECYCLER = "1.1.0"
 
         const val CARD = "1.0.0"
         const val CONSTRAINT = "2.0.0-beta4"
-        const val DESIGN = "1.2.0-alpha5"
+        const val DESIGN = "1.2.0-alpha06"
         const val APPCOMPAT = "1.2.0-alpha03"
         const val GRIDLAYOUT = "1.0.0"
     }
 
     object AndroidX {
-        const val NAVIGATION = "2.3.0-alpha04"
+        const val NAVIGATION = "2.3.0-alpha06"
     }
 
     object ViewModel {

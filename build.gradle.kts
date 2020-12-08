@@ -1,19 +1,17 @@
-import com.jml.breaking.bad.applyKotlinFoldersInModules
-
 buildscript {
-    val kotlinVersion = "1.3.72"
+    val kotlinVersion = "1.4.0"
 
     repositories {
-        jcenter()
         google()
+        jcenter()
         maven("https://plugins.gradle.org/m2/")
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:3.6.3")
+        classpath("com.android.tools.build:gradle:4.2.0-beta01")
         classpath(kotlin("gradle-plugin", version = kotlinVersion))
 
-        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.2.2")
-        classpath("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.8")
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.3.2")
+        //classpath("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.8")
     }
 }
 
@@ -23,14 +21,12 @@ allprojects {
         jcenter()
 
         mavenCentral()
-        maven("http://repository.jetbrains.com/all")
     }
 }
 
 subprojects {
-    applyKotlinFoldersInModules()
-}
 
-tasks.register("clean").configure {
-    delete("build")
+    tasks.withType<Test>().configureEach {
+        useJUnitPlatform()
+    }
 }
