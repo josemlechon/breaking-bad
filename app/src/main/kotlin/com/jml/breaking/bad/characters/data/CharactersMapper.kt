@@ -20,4 +20,5 @@ object CharactersMapper {
                 portrayed = item.portrayed.orEmpty()
             )
         }
+    //todo this is a test for sonarcloud
 }
